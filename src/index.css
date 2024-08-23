@@ -1,0 +1,122 @@
+* {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+}
+.navbar {
+  height: 3rem;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: blueviolet;
+  padding: 0 3rem 0 2rem;
+  color: #fff;
+}
+.navbar input {
+  height: 2rem;
+  width: 20rem;
+  padding-left: 10px;
+}
+.shoppingContainer {
+  height: auto;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+.singleItem {
+  height: 19rem;
+  width: 17rem;
+  margin: 1rem;
+  margin-top: 2rem;
+  border: 1px solid gray;
+}
+.dataCont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: -1rem;
+  
+}
+.dataCont img {
+  height: 8rem;
+  width: 8rem;
+  object-fit: contain;
+  margin-top: 12px;
+
+}
+.dataCont h4 {
+  text-align: center;
+}
+.watched {
+  height: 2rem;
+  width: 8rem;
+  border: none;
+  background-color: blueviolet;
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+}
+.priceCont {
+  margin-left: 1rem;
+}
+.watchedOrNot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.watchList {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(252, 243, 233);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.watchItem {
+  height: 13rem;
+  width: 65%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  border: 1px solid gray;
+  margin: 1rem;
+  padding: 1rem;
+}
+.imgCont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.imgCont img {
+  height: 6rem;
+  width: 6rem;
+  object-fit: contain;
+}
+.imgCont h4 {
+  width: 70%;
+}
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.quantity select {
+  height: 2rem;
+  width: 3rem;
+}
+.stats {
+  text-align: center;
+}
