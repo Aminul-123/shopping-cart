@@ -1,16 +1,12 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { shoppingData } from "./data"
 import { Link, Route, Routes } from "react-router-dom";
-
+import { useLocalStorage } from "./assets/useLocalStorage";
 
 
 export default function App () {
-  const [watched, setWatched] = useState(function () {
-    const storedValue = localStorage.getItem('listWatch');
-   // console.log(storedValue);
-    return storedValue ? JSON.parse(storedValue) : [];
-  });
 
+  const [watched , setWatched] = useLocalStorage('listWatch')
   function handleWatchedList (item) {
     setWatched((prev) => [...prev, item ]);
   }
@@ -18,10 +14,6 @@ export default function App () {
     setWatched((item) => item.filter((element) => element.id !== idToDelete))
   }
 
-  useEffect(function () {
-    localStorage.setItem('listWatch', JSON.stringify(watched))
-  }, [watched]);
-  
   return (
     <>
     <Routes>
@@ -49,6 +41,24 @@ export default function App () {
   )
 }
 function Navbar () {
+  const searchEl = useRef(null);
+
+  useEffect(function () {
+    function callback () {
+      if (e.code === 'Enter') {
+        if (document.activeElement === searchEl.current) return;
+        searchEl.current.focus();
+
+      }
+    }
+    document.addEventListener('keydown', callback);
+
+    return function () {
+      document.addEventListener('keydown', callback)
+    }
+  }, [searchEl])
+
+
   return (
     <>
       <div className="navbar">
@@ -56,7 +66,10 @@ function Navbar () {
           <h2>Shopping Cart</h2>
         </div>
         <div className="search">
-          <input type="text" placeholder="search" />
+          <input type="text"
+           placeholder="search"
+           ref={searchEl}
+            />
         </div>
         <div className="totalResult">
       <span> Total number of Item : {shoppingData.length} </span>
@@ -72,7 +85,10 @@ function Shopping ({watched, setWatched, handleWatchedList}) {
       {
         shoppingData.map((data) => {
           return (
-            <Item data ={data} key={data.id}  watched={watched} setWatched={setWatched} handleWatchedList={handleWatchedList} />
+            <Item data ={data} key={data.id} 
+             watched={watched}
+              setWatched={setWatched}
+               handleWatchedList={handleWatchedList} />
           )
         })
       }
@@ -80,7 +96,7 @@ function Shopping ({watched, setWatched, handleWatchedList}) {
     </>
   )
 }
-function Item ({data, watched, setWatched, handleWatchedList}) {
+function Item ({data, watched, handleWatchedList}) {
   const [isWatched , setIsWatched] = useState(false);
 
     const isIncludes = watched.map((item) => item.id).includes(data.id);

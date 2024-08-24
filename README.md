@@ -26,3 +26,7 @@ what will be the feature of shopping cart application .
                 totalQuantity      totalPrice
 
  - this project is not end here , we will implement more advanced feature in coming days.
+ - next ->
+
+    - place local storage feature in custom hook
+    - Reuse Rating functionality of previous component
